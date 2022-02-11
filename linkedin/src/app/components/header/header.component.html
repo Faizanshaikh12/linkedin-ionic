@@ -1,0 +1,54 @@
+<ion-header class="ion-container ion-no-border">
+  <ion-toolbar>
+    <div class="toolbar-wrap">
+      <ion-buttons slot="start" class="ion-no-padding">
+        <ion-button>
+          <ion-icon
+            class="linkedin-logo"
+            color="primary"
+            name="logo-linkedin">
+          </ion-icon>
+        </ion-button>
+        <ion-searchbar
+          class="ion-hide-lg-down"
+          color="tertiary"
+          placeholder="Search">
+        </ion-searchbar>
+      </ion-buttons>
+      <ion-grid>
+        <ion-row class="ion-justify-content-end">
+          <ion-col size="auto">
+            <ion-icon name="home"></ion-icon>
+            <div>Home</div>
+          </ion-col>
+          <ion-col size="auto">
+            <ion-icon name="people"></ion-icon>
+            <div>My Network</div>
+          </ion-col>
+          <ion-col size="auto">
+            <ion-icon name="briefcase"></ion-icon>
+            <div>Jobs</div>
+          </ion-col>
+          <ion-col size="auto">
+            <ion-icon name="chatbox-ellipses"></ion-icon>
+            <div>Messaging</div>
+          </ion-col>
+          <ion-col size="auto">
+            <ion-icon name="notifications"></ion-icon>
+            <ion-badge class="badge-style" color="danger">2</ion-badge>
+            <div>Notifications</div>
+          </ion-col>
+          <ion-col size="auto" (click)="presentPopover($event)">
+            <ion-avatar>
+              <ion-img src="assets/shapes.svg"></ion-img>
+            </ion-avatar>
+            <div style="display: flex; justify-content: center; align-items: center;">
+              Me
+            <ion-icon style="font-size: 16px" name="caret-down-outline"></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-toolbar>
+</ion-header>
