@@ -6,6 +6,10 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import {HeaderComponent} from "../components/header/header.component";
+import {ProfileSummaryComponent} from "../components/profile-summary/profile-summary.component";
+import {PostModalComponent} from "../components/post-modal/post-modal.component";
+import {AdvertisingComponent} from "../components/advertising/advertising.component";
+import {StartPostComponent} from "../components/start-post/start-post.component";
 
 
 @NgModule({
@@ -13,8 +17,8 @@ import {HeaderComponent} from "../components/header/header.component";
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
   ],
-    declarations: [HomePage, HeaderComponent]
+  declarations: [HomePage, HeaderComponent, ProfileSummaryComponent, PostModalComponent, AdvertisingComponent, StartPostComponent]
 })
 export class HomePageModule {}
