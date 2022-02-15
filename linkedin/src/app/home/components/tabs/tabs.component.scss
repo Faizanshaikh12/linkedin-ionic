@@ -1,0 +1,19 @@
+ion-toolbar{
+  height: 50px;
+  ion-tab-button{
+    padding-top: 4px;
+  }
+}
+.badge-style {
+  position: absolute;
+  margin-left: -6px;
+  margin-top: -10px;
+  height: 16px;
+  width: 16px;
+  border-radius: 999px;
+  ion-text{
+    font-weight: 400;
+    font-size: 12px;
+    margin-left: -1px;
+  }
+}
