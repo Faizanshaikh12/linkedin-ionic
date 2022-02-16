@@ -1,0 +1,55 @@
+.title-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;
+  .linkedin-text{
+    font-size: 36px;
+    font-weight: 900;
+  }
+  .linkedin-icon{
+    font-size: 40px;
+  }
+}
+.subTitle{
+  text-align: center;
+  margin: 24px 0;
+  font-size: 30px;
+}
+
+form{
+  max-width: 400px;
+  margin: auto;
+  ion-card{
+    box-shadow: none;
+    border: 1px solid #e1e1e1;
+    padding: 24px;
+    .terms{
+      font-size: 12px;
+      text-align: center;
+      margin-top: 16px;
+      ion-text{
+        font-weight: 500;
+      }
+    }
+    ion-button{
+      margin-top: 16px;
+      height: 48px;
+    }
+  }
+}
+
+.toggle-text{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ion-text{
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: 8px;
+    &:hover{
+      text-decoration: underline;
+
+    }
+  }
+}

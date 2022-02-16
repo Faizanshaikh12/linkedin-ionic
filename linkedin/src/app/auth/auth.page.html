@@ -1,0 +1,60 @@
+<ion-content>
+  <div class="title-container">
+    <ion-text class="linkedin-text" color="primary">Linked</ion-text>
+    <ion-icon class="linkedin-icon" name="logo-linkedin" color="primary"></ion-icon>
+  </div>
+  <div class="subTitle">Make the most of your professional life</div>
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+    <ion-card>
+      <ng-container *ngIf="submissionType === 'join'">
+        <ion-item>
+          <ion-label position="floating">First name</ion-label>
+          <ion-input #firstNameInput="ngModel" type="text" name="firstName" ngModel required></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="!firstNameInput.valid && firstNameInput.touched">
+          Please enter first name
+        </ion-text>
+      </ng-container>
+      <ng-container *ngIf="submissionType === 'join'">
+        <ion-item>
+          <ion-label position="floating">Last name</ion-label>
+          <ion-input #lastNameInput="ngModel" type="text" name="lastName" ngModel required></ion-input>
+        </ion-item>
+        <ion-text color="danger" *ngIf="!lastNameInput.valid && lastNameInput.touched">
+          Please enter last name
+        </ion-text>
+      </ng-container>
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input #emailInput="ngModel" type="text" name="email" ngModel required></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="!emailInput.valid && emailInput.touched">
+        Please enter email address
+      </ion-text>
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input #passwordInput="ngModel" type="password" name="password" ngModel required></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="!passwordInput.valid && passwordInput.touched">
+        Please enter password
+      </ion-text>
+      <p class="terms" *ngIf="submissionType !== 'join'">
+        By clicking Agree & Join, you agree to the linkedin
+        <ion-text color="primary">User Agreement</ion-text>
+        ,
+        <ion-text color="primary">Privacy Policy</ion-text>
+        , and
+        <ion-text color="primary">Cookie Policy</ion-text>
+      </p>
+      <ion-button [disabled]="!form.valid" type="submit" shape="round" expand="block">
+        {{submissionType === 'login' ? 'Sign In' : 'Accept & Join'}}
+      </ion-button>
+    </ion-card>
+  </form>
+  <div class="toggle-text">
+    {{submissionType === 'login' ? 'New to Linkedin' : 'Already on Linkedin'}}
+    <ion-text color="primary" (click)="toggleText()">
+      {{submissionType === 'login' ? 'Join Now' : 'Sign In'}}
+    </ion-text>
+  </div>
+</ion-content>
