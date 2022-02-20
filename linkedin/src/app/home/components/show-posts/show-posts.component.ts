@@ -2,7 +2,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {PostService} from "../../services/post.service";
 import {IonInfiniteScroll} from "@ionic/angular";
 import {Post} from "../../models/Post";
-import {error} from "protractor";
 
 @Component({
   selector: 'app-show-posts',

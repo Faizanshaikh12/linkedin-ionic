@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../../../auth/services/auth.service";
 
 @Component({
   selector: 'app-popover',
@@ -7,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopoverComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {}
 
   onSignOut(){
-    console.log('Sing out Called');
+    this.authService.logout();
   }
 
 }
