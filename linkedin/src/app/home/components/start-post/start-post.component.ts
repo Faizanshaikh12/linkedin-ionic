@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ModalController} from "@ionic/angular";
 import {PostModalComponent} from "../post-modal/post-modal.component";
 
@@ -8,21 +8,21 @@ import {PostModalComponent} from "../post-modal/post-modal.component";
   styleUrls: ['./start-post.component.scss'],
 })
 export class StartPostComponent implements OnInit {
-
+@Output() create: EventEmitter<any> = new EventEmitter();
   constructor(
     public modalController: ModalController
   ) { }
 
   ngOnInit() {}
 
-  async presentModal(){
+  async presentModal() {
     const modal = await this.modalController.create({
       component: PostModalComponent,
       cssClass: 'modal-custom-class'
     })
-    await modal.present()
-    const {data, role} = await modal.onDidDismiss();
-    console.log('role', role);
-    console.log('data', data);
+    await modal.present();
+    const {data} = await modal.onDidDismiss();
+    if (!data) return;
+    this.create.emit(data.post.body);
   }
 }
