@@ -6,11 +6,12 @@
     <div [style.background]="bannerColor.colorThree" class="bg-three"></div>
   </div>
   <ion-card-header class="ion-text-center">
-    <ion-avatar class="ion-margin-top">
-      <ion-img src="assets/shapes.svg"></ion-img>
+    <input #fileUpload (change)="onFileSelect($event)" style="display: none" type="file"/>
+    <ion-avatar (click)="fileUpload.click()" style="cursor: pointer" class="ion-margin-top">
+      <ion-img *ngIf="userAvatar" [src]="userAvatar"></ion-img>
     </ion-avatar>
     <ion-card-title class="ion-margin-top">
-      Faizan Shaikh
+      {{fullName}}
     </ion-card-title>
     <ion-card-subtitle>Full Stack Developer</ion-card-subtitle>
   </ion-card-header>

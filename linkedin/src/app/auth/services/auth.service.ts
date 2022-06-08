@@ -24,6 +24,9 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {
   }
 
+  get userStream(): Observable<User> {
+    return this.user$.asObservable();
+  }
 
   get isUserLoggedIn(): Observable<boolean> {
     return this.user$.asObservable().pipe(
@@ -43,6 +46,66 @@ export class AuthService {
   get userId(): Observable<number> {
     return this.user$.asObservable().pipe(
       switchMap((user: User) => of(user.id))
+    );
+  }
+
+  get userFullName(): Observable<string> {
+    return this.user$.asObservable().pipe(
+      switchMap((user: User) => {
+        const fullName = user.firstName + ' ' + user.lastName;
+        return of(fullName);
+      })
+    );
+  }
+
+  get userAvatar(): Observable<string> {
+    return this.user$.asObservable().pipe(
+      switchMap((user: User) => {
+        const doesUserHaveImage = !!user?.imagePath;
+        let fullImagePath = this.getDefaultAvatar();
+        if (doesUserHaveImage) {
+          fullImagePath = this.getAvatar(user.imagePath);
+        }
+        console.log(fullImagePath);
+        return of(fullImagePath);
+      })
+    );
+  }
+
+  getDefaultAvatar(): string {
+    return './assets/blank-profile.png';
+  }
+
+  getAvatar(imagePath: string): string {
+    return `${environment.baseUrl}/feed/image/` + imagePath;
+  }
+
+  getUserAvatar(): Observable<{ imageName: string }> {
+    return this.http.get<{ imageName: string }>(`${environment.baseUrl}/user/image`)
+      .pipe(take(1));
+  }
+
+  updateUserAvatar(imagePath: string): Observable<User> {
+    return this.user$.pipe(
+      take(1),
+      map((user: User) => {
+        user.imagePath = imagePath;
+        this.user$.next(user);
+        return user;
+      })
+    );
+  }
+
+  uploadUserAvatar(formData: FormData): Observable<{ modifiedFileName: string }> {
+    debugger
+    return this.http.post<{ modifiedFileName: string }>(
+      `${environment.baseUrl}/user/upload`, formData
+    ).pipe(
+      tap(({modifiedFileName}) => {
+        const user = this.user$.value;
+        user.imagePath = modifiedFileName;
+        this.user$.next(user);
+      })
     );
   }
 
@@ -72,7 +135,7 @@ export class AuthService {
       Storage.get({
         key: 'token'
       })).pipe(
-      map((data: { value: string; }) => {
+      map((data: { value: string }) => {
         if (!data || !data.value) {
           return null;
         }
